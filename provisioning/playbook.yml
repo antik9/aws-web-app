@@ -24,7 +24,7 @@
     tags: nginx
 
   - name: Install go packages
-    become: ubuntu
+    become_user: ubuntu
     shell: |
         go get -u github.com/jmoiron/sqlx github.com/lib/pq github.com/streadway/amqp
     tags: go
