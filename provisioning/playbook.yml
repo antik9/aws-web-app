@@ -24,12 +24,9 @@
     tags: nginx
 
   - name: Install go packages
+    become: ubuntu
     shell: |
-        go get \
-            github.com/jmoiron/sqlx
-            github.com/lib/pq v1.2.0
-            github.com/streadway/amqp
-            github.com/antik9/aws-web-app
+        go get -u github.com/jmoiron/sqlx github.com/lib/pq github.com/streadway/amqp
     tags: go
 
   - name: Start go server
