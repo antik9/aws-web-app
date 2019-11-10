@@ -1,3 +1,4 @@
+github.com/antik9/aws-web-app v0.0.0-20191110182408-0260dc8ce83b h1:c4VCTcqWEQdQGrLHVGITk0NiUEp2kA0oKdasuyx0oD0=
 github.com/aws/aws-sdk-go v1.25.16 h1:k7Fy6T/uNuLX6zuayU/TJoP7yMgGcJSkZpF7QVjwYpA=
 github.com/aws/aws-sdk-go v1.25.16/go.mod h1:KmX6BPdI08NWTb3/sm4ZGu5ShLoqVDhKgpiN924inxo=
 github.com/go-sql-driver/mysql v1.4.0/go.mod h1:zAC/RDZ24gD3HViQzih4MyKcchzm+sOG5ZlKdlhCg5w=
