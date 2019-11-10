@@ -2,6 +2,7 @@ package db
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"time"
 
@@ -35,4 +36,31 @@ func SaveIpToDatabase(ip string) {
 			"INSERT INTO views (client_ip, view_date) VALUES ($1, $2)", ip, currentTime,
 		)
 	}
+}
+
+func UpdateBlackList(ip string) {
+	Db.MustExec(
+		"INSERT INTO blacklist (ip, day) VALUES ($1, $2)", ip, time.Now().Format("2006-01-02"),
+	)
+}
+
+func GetIpsForBlackList() []string {
+	today := time.Now()
+	todayString := today.Format("2006-01-02")
+	tomorrow := today.Add(time.Hour * 24)
+	tomorrowString := tomorrow.Format("2006-01-02")
+
+	ips := make([]string, 0)
+	Db.Select(
+		&ips,
+		`
+		SELECT client_ip FROM views
+			WHERE view_date >= $1 AND view_date <= $2
+				AND client_ip NOT IN ( SELECT ip FROM blacklist WHERE day = $1 )
+			GROUP BY client_ip
+			HAVING COUNT(1) >= 2
+		`,
+		todayString, tomorrowString,
+	)
+	return ips
 }
