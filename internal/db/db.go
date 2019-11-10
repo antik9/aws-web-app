@@ -58,7 +58,7 @@ func GetIpsForBlackList() []string {
 			WHERE view_date >= $1 AND view_date <= $2
 				AND client_ip NOT IN ( SELECT ip FROM blacklist WHERE day = $1 )
 			GROUP BY client_ip
-			HAVING COUNT(1) >= 2
+			HAVING COUNT(1) >= 10
 		`,
 		todayString, tomorrowString,
 	)
