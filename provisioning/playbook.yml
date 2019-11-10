@@ -23,6 +23,15 @@
     notify: restart nginx
     tags: nginx
 
+  - name: Install go packages
+    shell: |
+        go get \
+            github.com/jmoiron/sqlx
+            github.com/lib/pq v1.2.0
+            github.com/streadway/amqp
+            github.com/antik9/aws-web-app
+    tags: go
+
   - name: Start go server
     become_user: ubuntu
     command: bash start_services.sh
