@@ -5,7 +5,6 @@ import (
 	"os"
 
 	"github.com/antik9/aws-web-app/internal/aws"
-	"github.com/antik9/aws-web-app/internal/db"
 )
 
 func main() {
@@ -22,7 +21,6 @@ func main() {
 			if _, err = f.WriteString(_ip + "\n"); err != nil {
 				log.Fatal(err)
 			}
-			db.UpdateBlackList(_ip)
 		}(ip)
 	}
 }

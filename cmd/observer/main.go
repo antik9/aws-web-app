@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"os"
 	"time"
 
 	"github.com/antik9/aws-web-app/internal/aws"
@@ -14,7 +16,10 @@ func main() {
 		case <-ticker.C:
 			blackListedIps := db.GetIpsForBlackList()
 			for _, ip := range blackListedIps {
-				awsapp.SendMessage(&ip)
+				hostname, _ := os.Hostname()
+				message := fmt.Sprintf("%s on %s", ip, hostname)
+				awsapp.SendMessage(&message)
+				db.UpdateBlackList(ip)
 			}
 		}
 	}
