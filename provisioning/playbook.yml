@@ -25,7 +25,7 @@
   - name: Install go packages
     become_user: ubuntu
     shell: |
-        go get -u github.com/jmoiron/sqlx github.com/lib/pq github.com/streadway/amqp
+        go get -u github.com/jmoiron/sqlx github.com/lib/pq github.com/streadway/amqp github.com/aws/aws-sdk-go/aws
     tags: go
 
   - name: Start go server
