@@ -15,7 +15,6 @@
         - nginx
         - postgresql-client
         - postgresql-client-common
-        - rabbitmq-server
     tags: install
 
   - name: Prepare NGINX configuration
